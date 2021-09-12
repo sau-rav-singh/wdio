@@ -1,9 +1,9 @@
 describe('My Login application', () => {
-    it('should login with valid credentials', () => {
+    it('Login fail page title', () => {
         browser.url('https://rahulshettyacademy.com/loginpagePractise/')
+       // browser.windowHandleMaximize([windowHandle]);
         console.log(browser.getTitle())
         // browser.pause(3000)
-
         expect(browser).toHaveTitleContaining("Rahul Shetty Academy")
         //xpath, css, linkText
         //---    tagname[attribute='value']  ->  input[name='username']
@@ -21,6 +21,16 @@ describe('My Login application', () => {
         console.log($(".alert-danger").getText() + "is the text am seeing on the screen")
         $("p").getText()
         expect($("p")).toHaveTextContaining("(username is rahulshettyacademy and Password is learning)")
-
+    })
+    it('Login Success', () => {
+        browser.url('https://rahulshettyacademy.com/loginpagePractise/')
+        $("input[name='username']").setValue("rahulshettyacademy")
+        const password = $("//input[@type='password']")
+        password.setValue("learning")
+        $("#signInBtn").click()
+        const link = $("*=Checkout")
+        link.waitForExist()
+        expect(browser).toHaveTitle("ProtoCommerce")
+        expect(browser).toHaveUrlContaining("shop")
     })
 })
