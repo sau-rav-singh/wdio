@@ -20,6 +20,9 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
+    suites:{
+            suite1 : ['test/specs/firsttest.js','test/specs/webelements.js']
+    },
     specs: [
         './test/specs/**/*.js'
     ],
@@ -43,7 +46,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 3,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -54,10 +57,14 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: 3,
         //
         browserName: 'chrome',
-        acceptInsecureCerts: true
+       /* 'goog:chromeOptions': {
+            // to run chrome headless the following flags are required
+            // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+             args: ['--headless', '--disable-gpu']},
+        acceptInsecureCerts: true*/
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -88,13 +95,13 @@ exports.config = {
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
-    bail: 0,
+    bail: 10,
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'https://rahulshettyacademy.com/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -133,15 +140,18 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec'],
-
-
-    
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+       // disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }]],    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
+        //,grep: 'saurav'
     },
     //
     // =====
@@ -220,8 +230,11 @@ exports.config = {
     /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: function(test, context, { error, result, duration, passed, retries }) {
+        // if (error) {
+        //     browser.takeScreenshot();
+        //   }
+ },
 
 
     /**

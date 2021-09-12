@@ -1,7 +1,6 @@
-
 const expectchai = require('chai').expect
 describe('My Login application', () => {
-    	it('Login fail page title', () => {
+    xit('Login fail page title', () => {
         browser.url('https://rahulshettyacademy.com/loginpagePractise/')
         $("input[name='username']").setValue("rahulshettyacademy")
         const password = $("//input[@type='password']")
@@ -27,18 +26,19 @@ describe('My Login application', () => {
         expectchai(dropdown.getValue()).to.equal("stud")
     })
     it('Dynamic Dropdown Controls Smoke', () => {
-        browser.url("https://rahulshettyacademy.com/AutomationPractice/")
+        browser.url("/AutomationPractice/")
         $("#autocomplete").setValue("ind")
         browser.pause(3000)
         let items = $$("[class='ui-menu-item'] div")
         //    for(var i =0;i<items.length;i++)
         //    {
         //        console.log(items[i].getText())
+
         //    }
         const desiredLocator = items.filter(item => item.getText() === "India")
         desiredLocator[0].click()
     })
-    it('Checkboxes Identification', () => {
+    xit('Checkboxes Identification', () => {
         browser.url("https://rahulshettyacademy.com/AutomationPractice/")
         const element = $$("input[type='checkbox']")
         element[1].click()

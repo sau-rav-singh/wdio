@@ -18,7 +18,7 @@ describe('Functional Testing on  Application',()=>
     browser.pause(3000)
 
 })
-it('Web Tables Sort validation Smoke',()=>
+it('Web Tables Sort validation',()=>
 {
     browser.url("https://rahulshettyacademy.com/seleniumPractise/#/offers")
     $("tr th:nth-child(1)").click()

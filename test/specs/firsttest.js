@@ -1,6 +1,6 @@
 describe('My Login application', () => {
-    it('Login fail page title', () => {
-        browser.url('https://rahulshettyacademy.com/loginpagePractise/')
+    it('Login fail page title-saurav', () => {
+        browser.url('/loginpagePractise/')
        // browser.windowHandleMaximize([windowHandle]);
         console.log(browser.getTitle())
         // browser.pause(3000)
